@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<!-- Stylesheets, CSS, URL highlights -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" href="../w3.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="icon" href="../favicon.ico" type="image/x-icon" sizes="16x16">
+	<link rel="shortcut icon" href="../favicon.ico" type="image/x-icon" sizes="16x16"/>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<style>
+		body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
+	</style>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Assignment 3 - GEOG774</title>
+</head>
+<body class="w3-light-grey w3-content" style="max-width:100%">
+
+<!-- Sidebar/menu -->
+<nav class="w3-sidebar w3-collapse w3-white w3-animate-left" style="z-index:3;width:300px;" id="mySidebar"><br>
+  <div class="w3-container">
+    <center><img class="img-circle" src="../images/globe_os-0.png" style="width:45%;"><br><br>
+    <h4><b>GEOG774</b></h4>
+		<h5><b>Sem 2 | 2017</b></h5>
+			<h6>pedw170's projects</h6>
+	<hr class="barfade">
+	</center>
+  </div>
+  <div class="w3-bar-block">
+    <a href="https://pedw170.github.io/GEOG774/" class="w3-bar-item w3-button w3-text-black w3-padding"><i class="fa fa-th-large fa-fw w3-margin-right"></i>INDEX</a> 
+    <a href="assignment2.html" class="w3-bar-item w3-button w3-text-black w3-padding"><i class="glyphicon glyphicon-map-marker fa-fw w3-margin-right"></i>ASSIGNMENT 2</a> 
+    <a href="assignment3.html" class="w3-bar-item w3-button w3-text-teal w3-padding"><i class="glyphicon glyphicon-map-marker fa-fw w3-margin-right"></i>ASSIGNMENT 3</a> 
+	<a href="assignment4.html" class="w3-bar-item w3-button w3-text-black w3-padding"><i class="glyphicon glyphicon-map-marker fa-fw w3-margin-right"></i>ASSIGNMENT 4</a> 
+	<a href="assignment5.html" class="w3-bar-item w3-button w3-text-black w3-padding"><i class="glyphicon glyphicon-map-marker fa-fw w3-margin-right"></i>ASSIGNMENT 5</a> 
+	<a href="project.html" class="w3-bar-item w3-button w3-text-black w3-padding"><i class="glyphicon glyphicon-map-marker fa-fw w3-margin-right"></i>PROJECT</a> 
+  </div>
+	<!-- CSS Sidebar Footer -->
+	<div class="w3-black w3-center w3-padding-12 footer">Powered by (a modified) <a href="https://www.w3schools.com/w3css/default.asp" title="W3.CSS" target="_blank" class="w3-hover-opacity">w3.css</a></div>
+</nav>
+
+<!-- !PAGE CONTENT! -->
+<div class="w3-main" style="margin-left:300px">
+  <!-- Header -->
+  <header id="body_header">
+    <div class="w3-container">
+    <h1><b>Assignment 3</b></h1>
+    <div class="w3-section w3-bottombar w3-padding-8">
+    </div>
+    </div>
+  </header>
+  
+  <!-- Example Map Space -->
+  <div class="w3-row-padding">
+    <div class="w3-third w3-container w3-margin-bottom">
+      <div id="mapid" style="width: 500px; height: 550px;"></div>
+
+    </div>
+    
+  </div>
+<!-- End page content -->
+</div>
+
+<script>
+// Script to open and close sidebar
+function w3_open() {
+    document.getElementById("mySidebar").style.display = "block";
+    document.getElementById("myOverlay").style.display = "block";
+}
+ 
+function w3_close() {
+    document.getElementById("mySidebar").style.display = "none";
+    document.getElementById("myOverlay").style.display = "none";
+}
+</script>
+
+</body>
+</html>
