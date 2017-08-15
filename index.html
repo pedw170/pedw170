@@ -59,24 +59,26 @@
     </div>
   </header>
   
-  <!-- Example Map Space -->
+  <!-- Body & Leaflet Map -->
   <div class="w3-container">
   <p>Hello, this page serves as launchpad for my GEOG774 github repository.
   <br><br>The navigation sidebar on the left-hand side contains clickable links to each of the GEOG774 assignments, and will automatically hide itself if the browser window is resized too small to show both the sidebar and the project data.
   <br><br>Below is a small example of embedding Leaflet maps in HTML. This simple map shows a meteor-impact crater in the <a href="https://en.wikipedia.org/wiki/Manicouagan_Reservoir"><u>Manicouagan Reservoir</u></a> in the province of Quebec, and highlights the bodies of water that have formed around it since by drawing a polygon around them.
   </div>
   <br><br>
+	<!-- Embedding leaflet in page, defining canvas size (800 x 600), and centering in middle of div -->
 			<div id="mapid" class="map map-home leaflet-container leaflet-grab leaflet-touch-drag leaflet-touch-zoom" style="width: 800px; height: 600px; margin: auto;"></div>
 			<script>
+	<!-- Defining map variable, changing default centre, and default zoom -->
 			var mymap = L.map('mapid').setView([51.394, -68.675], 8);
-
+	<!-- Changing map tiles to ESRI WorldImagery -->
 			// https: also suppported.
 			var Esri_WorldImagery = L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
 			attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
 			}).addTo(mymap);
-
+	<!-- Defining popup variable -->
 			var popup = L.popup();
-			
+	<!-- Defining style to change polygon fill colour, outline colour, and opacity -->
 			var polystyle = {
 				"color": "#ff005f",
 				"weight": 2,
@@ -85,11 +87,12 @@
 				"fillColor": "#ff5f87",
 				"fillOpacity": 0.5
 				};
-	
+	<!-- Defining variable for polygon feature -->
 			var meteorpoly = {
 				"type": "FeatureCollection",
 				"features": [
 				{
+	<!-- Defining GeoJSON Polygon -->			  
 				  "type": "Feature",
 				  "geometry": {
 					"type": "Polygon",
@@ -579,18 +582,15 @@
 								]
 							},
 	  
-						"properties": {
-							"name": "Manicouagan Reservoir impact"
-						}
 					}
 				]
 			}
 			</script>
-	<!-- Adding polygon around crater & applying style -->
+	<!-- Adding GEOJson polygon & applying style changes -->
 <script>
 	L.geoJson(meteorpoly, {style:polystyle}).addTo(mymap);
 </script>
-	<!-- Adding marker with Font Awesome icon -->
+	<!-- Adding placemark with modified icon and popup text -->
 <script>
 	L.marker([51.380590, -68.680093], {icon: L.icon.glyph({ prefix: 'fa', glyph: 'leaf', glyphColor: 'rgb(155,255,140)' }) }).addTo(mymap)
 	.bindPopup("<center><b>Site of meteor impact<br>in Manicouagan Reservoir</b></center>").openPopup();
@@ -600,7 +600,7 @@
 <!-- End page content -->
 
 <script>
-// Script to open and close sidebar
+// Script to open and close sidebar, from W3 template
 function w3_open() {
     document.getElementById("mySidebar").style.display = "block";
     document.getElementById("myOverlay").style.display = "block";
