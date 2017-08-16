@@ -69,16 +69,16 @@
 	<!-- Embedding leaflet in page, defining canvas size (800 x 600), and centering in middle of div -->
 			<div id="mapid" class="map map-home leaflet-container leaflet-grab leaflet-touch-drag leaflet-touch-zoom" style="width: 800px; height: 600px; margin: auto;"></div>
 			<script>
-	<!-- Defining map variable, changing default centre, and default zoom -->
+	// <!-- Defining map variable, changing default centre, and default zoom -->
 			var mymap = L.map('mapid').setView([51.394, -68.675], 8);
-	<!-- Changing map tiles to ESRI WorldImagery -->
+	// <!-- Changing map tiles to ESRI WorldImagery -->
 			// https: also suppported.
 			var Esri_WorldImagery = L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
 			attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
 			}).addTo(mymap);
-	<!-- Defining popup variable -->
+	// <!-- Defining popup variable -->
 			var popup = L.popup();
-	<!-- Defining style to change polygon fill colour, outline colour, and opacity -->
+	// <!-- Defining style to change polygon fill colour, outline colour, and opacity -->
 			var polystyle = {
 				"color": "#ff005f",
 				"weight": 2,
@@ -87,12 +87,12 @@
 				"fillColor": "#ff5f87",
 				"fillOpacity": 0.5
 				};
-	<!-- Defining variable for polygon feature -->
+	// <!-- Defining variable for polygon feature -->
 			var meteorpoly = {
 				"type": "FeatureCollection",
 				"features": [
 				{
-	<!-- Defining GeoJSON Polygon -->			  
+	// <!-- Defining GeoJSON Polygon -->			  
 				  "type": "Feature",
 				  "geometry": {
 					"type": "Polygon",
