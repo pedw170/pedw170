@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<!-- Mapbox JS files -->
+	<script src='https://api.mapbox.com/mapbox-gl-js/v0.39.1/mapbox-gl.js'></script>
+	<link href='https://api.mapbox.com/mapbox-gl-js/v0.39.1/mapbox-gl.css' rel='stylesheet' />
+	
 	<!-- Stylesheets, CSS, URL highlights -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<link rel="stylesheet" href="../w3.css">
@@ -25,7 +29,7 @@
     <center><img class="img-circle" src="../images/globe_os-0.png" style="width:45%;"><br><br>
     <h4><b>GEOG774</b></h4>
 		<h5><b>Sem 2 | 2017</b></h5>
-			<h6>pedw170's projects</h6>
+			<h6>Patrick Edwards' projects</h6>
 	<hr class="barfade">
 	</center>
   </div>
@@ -52,14 +56,52 @@
     </div>
   </header>
   
-  <!-- Example Map Space -->
-  <div class="w3-row-padding">
+  <!-- Body & Mapbox Map -->
+<div class="w3-row-padding">
     <div class="w3-third w3-container w3-margin-bottom">
-      <div id="mapid" style="width: 500px; height: 550px;"></div>
+	<div id='map_1' style='width: 1024px; height: 768px;'></div>
+	<script>
+		mapboxgl.accessToken = 'pk.eyJ1IjoicGVkdzE3MCIsImEiOiJjajZkM3Z6ZWsxd20wMnhsN3A0NGYyYWZoIn0.W2KJ8AnKDdLz1k75YsIOrg'	;
+		var map_1 = new mapboxgl.Map({
+		container: 'map_1',
+		style: 'mapbox://styles/pedw170/cj6fubcu62v0h2smrpgocx6fp'
+	});
+</script><br>
+<div id='map_2' style='width: 1024px; height: 768px;'>
+	</div>
+	<script>
+		mapboxgl.accessToken = 'pk.eyJ1IjoicGVkdzE3MCIsImEiOiJjajZkM3Z6ZWsxd20wMnhsN3A0NGYyYWZoIn0.W2KJ8AnKDdLz1k75YsIOrg'	;
+		var map_2 = new mapboxgl.Map({
+		container: 'map_2',
+		style: 'mapbox://styles/pedw170/cj6fudfop1it92sokiiimjmlu'
+		});	
 
-    </div>
-    
-  </div>
+		map_2.on('load', function () {
+			map_2.addSource('greatwalks-tracks',{
+				type: 'vector',
+				url: 'mapbox://pedw170.cj6d48nyo1y6y2vnyu2b27tlg-7zjde'
+				});
+			map_2.addLayer({
+				"id": "tracks",
+				"type": "line",
+				"source": "greatwalks-tracks",
+				"source-layer": "greatwalksplan",
+				"layout": {
+					"visibility": "visible",
+					"line-join": "round",
+					"line-cap": "round"
+				},
+				"paint": {
+					"line-color": "#00ff00",
+					"line-width": 3
+				}
+			});
+			map_2.setLayerZoomRange('tracks', 1, 22);
+		});
+		
+    </script>
+
+</div>
 <!-- End page content -->
 </div>
 

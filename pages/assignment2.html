@@ -1,21 +1,24 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<!-- Forcing all links to be opened in new window, test. -->
 	<!-- Stylesheets, CSS, URL highlights -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<link rel="stylesheet" href="../w3.css">
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="http://libs.cartocdn.com/cartodb.js/v3/3.15/themes/css/cartodb.css" />
 	<link rel="icon" href="../favicon.ico" type="image/x-icon" sizes="16x16">
 	<link rel="shortcut icon" href="../favicon.ico" type="image/x-icon" sizes="16x16"/>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	
 	<style>
 		body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
 	</style>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Assignment 2 - GEOG774</title>
+	<title>Assignment 2: CartoJS - GEOG774</title>
 </head>	
 <body class="w3-light-grey w3-content" style="max-width:100%">
 
@@ -25,7 +28,7 @@
     <center><img class="img-circle" src="../images/globe_os-0.png" style="width:45%;"><br><br>
     <h4><b>GEOG774</b></h4>
 		<h5><b>Sem 2 | 2017</b></h5>
-			<h6>pedw170's projects</h6>
+			<h6>Patrick Edwards' projects</h6>
 	<hr class="barfade">
 	</center>
   </div>
@@ -46,19 +49,22 @@
   <!-- Header -->
   <header id="body_header">
     <div class="w3-container">
-    <h1><b>Assignment 2</b></h1>
     <div class="w3-section w3-bottombar w3-padding-8">
-    </div>
+	<h2><b>Assignment 2 - Embedded Carto Timeseries</b></h2>
+	</div>
     </div>
   </header>
   
-  <!-- Example Map Space -->
+  <!-- Carto Map embedded below -->
   <div class="w3-row-padding">
-    <div class="w3-third w3-container w3-margin-bottom">
-      <div id="mapid" style="width: 500px; height: 550px;"></div>
-
+    <div class="w3-container w3-margin-bottom">
+	Carto is a web-based platform aimed at simplifying the process of designing and publishing maps with varying levels of analytical complexity, ranging from simple choropleth and time-series maps to complex locational intelligence processing. <br><br>
+	Assignment 2 for GEOG774 requires the student to produce an animated time-series map of road collision events in Auckland, using data obtained from the New Zealand Transport Agency (NZTA) through the Auckland hackathon event 'HACKAKL'. The output of this assignment is below: an animated time-series map created in <a href="https://carto.com"><u>Carto Builder</u></a> and embedded in this Github-hosted webpage.<br><br>
+	<div id="cartomap" style="width: 90%; height: 89.5%; margin: auto">
+	<script src="http://libs.cartocdn.com/cartodb.js/v3/3.15/cartodb.js"></script>
+	<iframe style="position: absolute; height: 75%; border: none; width: 75%;margins: auto" frameborder="0" src="https://pedw170.carto.com/builder/c0916219-c015-49d4-9c58-ab747e264a2a/embed" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
+	</div>
     </div>
-    
   </div>
 
 <!-- End page content -->
