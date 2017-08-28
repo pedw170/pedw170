@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<!-- Downloaded compass icon from https://www.iconfinder.com/icons/1055086/compass_direction_location_navigation_icon#size=128 -->
+		<!-- Free for use and no linkback -->
 	<!-- Mapbox JS files -->
 	<script src='https://api.mapbox.com/mapbox-gl-js/v0.39.1/mapbox-gl.js'></script>
 	<link href='https://api.mapbox.com/mapbox-gl-js/v0.39.1/mapbox-gl.css' rel='stylesheet' />
@@ -16,6 +18,26 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<style>
 		body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
+		#mapcontainer {
+			width: 80%;
+			height: 768px;
+			margin: auto;
+			}
+		#firstmap {
+			width: 45%;
+			float: left;
+			height: 768px;
+			border: 1px solid #008080;
+			}
+		#secondmap {
+			width: 45%;
+			float: right;
+			height: 768px;
+			border: 1px solid #008080;
+			}
+		#clear {
+			clear: both
+			}
 	</style>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -34,7 +56,7 @@
 	</center>
   </div>
   <div class="w3-bar-block">
-    <a href="https://pedw170.github.io" class="w3-bar-item w3-button w3-text-black w3-padding"><i class="fa fa-th-large fa-fw w3-margin-right"></i>INDEX</a> 
+    <a href="https://pedw170.github.io" class="w3-bar-item w3-button w3-text-black w3-padding"><i class="fa fa-th-large fa-fw w3-margin-right"></i>HOME</a> 
     <a href="assignment2.html" class="w3-bar-item w3-button w3-text-black w3-padding"><i class="glyphicon glyphicon-map-marker fa-fw w3-margin-right"></i>ASSIGNMENT 2</a> 
     <a href="assignment3.html" class="w3-bar-item w3-button w3-text-teal w3-padding"><i class="glyphicon glyphicon-map-marker fa-fw w3-margin-right"></i>ASSIGNMENT 3</a> 
 	<a href="assignment4.html" class="w3-bar-item w3-button w3-text-black w3-padding"><i class="glyphicon glyphicon-map-marker fa-fw w3-margin-right"></i>ASSIGNMENT 4</a> 
@@ -55,19 +77,23 @@
     </div>
     </div>
   </header>
-  
   <!-- Body & Mapbox Map -->
 <div class="w3-row-padding">
-    <div class="w3-third w3-container w3-margin-bottom">
-	<div id='map_1' style='width: 1024px; height: 768px;'></div>
+    <div class="w3-container w3-margin-bottom">
+	<div id="mapcontainer">
+	<div id="firstmap">
+	<div id='map_1' style='width: 100%; height: 100%;'></div>
 	<script>
 		mapboxgl.accessToken = 'pk.eyJ1IjoicGVkdzE3MCIsImEiOiJjajZkM3Z6ZWsxd20wMnhsN3A0NGYyYWZoIn0.W2KJ8AnKDdLz1k75YsIOrg'	;
 		var map_1 = new mapboxgl.Map({
 		container: 'map_1',
 		style: 'mapbox://styles/pedw170/cj6fubcu62v0h2smrpgocx6fp'
 	});
-</script><br>
-<div id='map_2' style='width: 1024px; height: 768px;'>
+</script>
+	</div>
+	<div id="secondmap">
+<div id='map_2' style='width: 100%; height: 100%;'></div>
+	</div>
 	</div>
 	<script>
 		mapboxgl.accessToken = 'pk.eyJ1IjoicGVkdzE3MCIsImEiOiJjajZkM3Z6ZWsxd20wMnhsN3A0NGYyYWZoIn0.W2KJ8AnKDdLz1k75YsIOrg'	;
@@ -100,6 +126,7 @@
 		});
 		
     </script>
+	<div id="clear"></div>
 
 </div>
 <!-- End page content -->
