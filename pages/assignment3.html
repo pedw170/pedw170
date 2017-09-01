@@ -18,25 +18,71 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<style>
 		body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
+		
+		#resetview1 {
+			display: block;
+			position: absolute;
+			z-index: 3;
+			margin: 1%;
+			width: 50px;
+			height: 50px;
+			padding: 1px;
+			border: none;
+			border-radius: 3px;
+			font-size: 12px;
+			text-align: center;
+			color: #d6d6d6;
+			background: #f9f9f9;
+			border-radius:50%;
+			box-shadow:0 4px 10px 0 rgba(0,0,0,0.2),0 4px 20px 0 rgba(0,0,0,0.19);
+			}
+			
+			#resetview2 {
+			display: block;
+			position: absolute;
+			z-index: 3;
+			margin: 1%;
+			width: 50px;
+			height: 50px;
+			padding: 1px;
+			border: none;
+			border-radius: 3px;
+			font-size: 12px;
+			text-align: center;
+			color: #d6d6d6;
+			background: #f9f9f9;
+			border-radius:50%;
+			box-shadow:0 4px 10px 0 rgba(0,0,0,0.2),0 4px 20px 0 rgba(0,0,0,0.19);
+			}
+		
 		#mapcontainer {
-			width: 80%;
-			height: 768px;
+			width: 90%;
+			height: 800px;
 			margin: auto;
+			z-index: -3;
 			}
 		#firstmap {
-			width: 45%;
+			width: 49.5%;
 			float: left;
-			height: 768px;
+			height: 800px;
 			border: 1px solid #008080;
+			z-index: -2;
 			}
 		#secondmap {
-			width: 45%;
+			width: 49.5%;
 			float: right;
-			height: 768px;
+			height: 800px;
 			border: 1px solid #008080;
+			z-index: -2;
 			}
+		
 		#clear {
 			clear: both
+			}
+		
+		.mapboxgl-popup {
+			max-width: 400px;
+			font:12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
 			}
 	</style>
 		<meta charset="UTF-8">
@@ -82,31 +128,187 @@
     <div class="w3-container w3-margin-bottom">
 	<div id="mapcontainer">
 	<div id="firstmap">
+	<button id='resetview1'>
+	<i class="fa fa-home fa-2x"></i>
+	</button>
 	<div id='map_1' style='width: 100%; height: 100%;'></div>
 	<script>
 		mapboxgl.accessToken = 'pk.eyJ1IjoicGVkdzE3MCIsImEiOiJjajZkM3Z6ZWsxd20wMnhsN3A0NGYyYWZoIn0.W2KJ8AnKDdLz1k75YsIOrg'	;
 		var map_1 = new mapboxgl.Map({
 		container: 'map_1',
-		style: 'mapbox://styles/pedw170/cj6fubcu62v0h2smrpgocx6fp'
+		style: 'mapbox://styles/pedw170/cj6fubcu62v0h2smrpgocx6fp',
+		center: [172.50, -42.00],
+		zoom: 5.20
+	});
+	
+		document.getElementById('resetview1').addEventListener('click', function () {
+		// Returns map to initial zoom level and location
+		map_1.flyTo({
+		center: [172.50, -42.00],
+		zoom: 5.20
+		});
 	});
 </script>
 	</div>
 	<div id="secondmap">
-<div id='map_2' style='width: 100%; height: 100%;'></div>
+	<button id='resetview2'>
+	<i class="fa fa-home fa-2x"></i>
+	</button>
+	<div id='map_2' style='width: 100%; height: 100%;'></div>
 	</div>
 	</div>
 	<script>
 		mapboxgl.accessToken = 'pk.eyJ1IjoicGVkdzE3MCIsImEiOiJjajZkM3Z6ZWsxd20wMnhsN3A0NGYyYWZoIn0.W2KJ8AnKDdLz1k75YsIOrg'	;
 		var map_2 = new mapboxgl.Map({
 		container: 'map_2',
-		style: 'mapbox://styles/pedw170/cj6fudfop1it92sokiiimjmlu'
+		style: 'mapbox://styles/pedw170/cj6fudfop1it92sokiiimjmlu',
+		center: [172.50, -42.00],
+		zoom: 5.20
 		});	
-
+		
+	document.getElementById('resetview2').addEventListener('click', function () {
+    // Returns map to initial zoom level and location
+		map_2.flyTo({
+		center: [172.50, -42.00],
+		zoom: 5.20
+		});
+		map_2.closePopup();
+	});
+		
 		map_2.on('load', function () {
 			map_2.addSource('greatwalks-tracks',{
 				type: 'vector',
 				url: 'mapbox://pedw170.cj6d48nyo1y6y2vnyu2b27tlg-7zjde'
 				});
+
+			map_2.addSource("markers", {
+				"type": "geojson",
+				"data": {"type": "FeatureCollection",
+				  "features": [
+						{
+						  "type": "Feature",
+						  "properties": {
+							"description": "Test.",
+							"marker-symbol": "park",
+							"walkname": "Rakiura Track",
+							"description": "Escape on an island adventure - relax and unwind in the peaceful surroundings with the bush, birds and beach at your side."
+						  },
+						  "geometry": {
+							"type": "Point",
+							"coordinates": [
+							  168.06060791015625,
+							  -46.87016728453677
+							]
+						  }
+						},
+						{
+						  "type": "Feature",
+						  "properties": {
+							"marker-symbol": "park",
+							"walkname": "Kepler Track",
+							"description": "Vast tussock-covered ridgelines and spectacular alpine vistas contrast with peaceful lakeside and valley beech forest in this wilderness adventure."
+						  },
+						  "geometry": {
+							"type": "Point",
+							"coordinates": [
+							  167.53446578979492,
+							  -45.390041974142385
+							]
+						  }
+						},
+						{
+						  "type": "Feature",
+						  "properties": {
+							"marker-symbol": "park",
+							"walkname": "Milford Track",
+							"description": "Experience the finest walk in the world as you retrace the steps of early explorers on the world-renowed Milford Track. Take a journey along valleys carved by glaciers, wander through ancient rainforests and admire cascading waterfalls."
+						  },
+						  "geometry": {
+							"type": "Point",
+							"coordinates": [
+							  167.7660369873047,
+							  -44.80473721472605
+							]
+						  }
+						},
+						{
+						  "type": "Feature",
+						  "properties": {
+							"marker-symbol": "park",
+							"walkname": "Routeburn Track",
+							"description": "This is the ultimate alpine adventure, weaving through meadows, reflective tarns and alpine gardens. You'll be rewarded with spectacular vistas over vast mountain ranges and valleys."
+						  },
+						  "geometry": {
+							"type": "Point",
+							"coordinates": [
+							  168.16635131835938,
+							  -44.75989891587614
+							]
+						  }
+						},
+						{
+						  "type": "Feature",
+						  "properties": {
+							"marker-symbol": "park",
+							"walkname": "Heaphy Track",
+							"description": "Travel through expansive tussock downs, lush forests and nīkau palms to the roaring seas of the West Coast."
+						  },
+						  "geometry": {
+							"type": "Point",
+							"coordinates": [
+							  172.1132,
+							  -40.9747
+							]
+						  }
+						},
+						{
+						  "type": "Feature",
+						  "properties": {
+							"marker-symbol": "park",
+							"walkname": "Abel Tasman Coast Track",
+							"description": "Blessed with a mild climate, golden beaches and lush coastal native bush, the Abel Tasman Coast Track has it all."
+						  },
+						  "geometry": {
+							"type": "Point",
+							"coordinates": [
+							  173.0463409423828,
+							  -40.87094930229996
+							]
+						  }
+						},
+						{
+						  "type": "Feature",
+						  "properties": {
+							"marker-symbol": "park",
+							"walkname": "Tongariro Northern Circuit",
+							"description": "Explore the volcanic heart of Tongariro National Park, a landscape of stark glacial contrasts and alpine views."
+						  },
+						  "geometry": {
+							"type": "Point",
+							"coordinates": [
+							  175.62332153320312,
+							  -39.1407122665526
+							]
+						  }
+						},
+						{
+						  "type": "Feature",
+						  "properties": {
+							"marker-symbol": "park",
+							"walkname": "Lake Waikaremoana",
+							"description": "Trace the shoreline of Lake Waikaremoana, the sea of rippling waters. Pass giant podocarp trees and remote beaches, and enjoy breathtaking views from Panekire Bluff."
+						  },
+						  "geometry": {
+							"type": "Point",
+							"coordinates": [
+							  177.0014190673828,
+							  -38.8151011531236
+							]
+						  }
+						}
+					],
+					}
+				});	
 			map_2.addLayer({
 				"id": "tracks",
 				"type": "line",
@@ -118,13 +320,59 @@
 					"line-cap": "round"
 				},
 				"paint": {
-					"line-color": "#00ff00",
-					"line-width": 3
+					"line-color": "#00af87",
+					"line-width": 1.5
 				}
 			});
-			map_2.setLayerZoomRange('tracks', 1, 22);
+			map_2.addLayer({
+				"id": "markers",
+				"type": "symbol",
+				"source": "markers",
+				"paint": {
+					"text-color": "#00ff87",
+					"text-halo-color": "rgba(0,0,0,1)",
+					"text-halo-width": 1.5,
+					"text-halo-blur": 1
+				},
+				"layout": {
+					"icon-image": "{marker-symbol}-15",
+					"text-field": "{walkname}",
+					"text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
+					"text-offset": [0, 0.6],
+					"text-size": 12,
+					"text-anchor": "top",
+					"text-allow-overlap": true
+				}
+				});
+		
+
+		
+			map_2.setLayerZoomRange('tracks', 8, 0);
+			map_2.setLayerZoomRange('markers', 0, 22);
+		});
+		map_2.on('click', function (e) {
+		var features = map_2.queryRenderedFeatures(e.point, { layers: ['markers']});
+		if (features.length) {
+		map_2.flyTo({center: features[0].geometry.coordinates, zoom: 10});
+		}
 		});
 		
+		map_2.on('click', 'markers', function (e) {
+			new mapboxgl.Popup()
+				.setLngLat(e.features[0].geometry.coordinates)
+				.setHTML(e.features[0].properties.description)
+				.addTo(map_2);
+			});
+				
+		map_2.on('mousemove', function (e) {
+			var features = map_2.queryRenderedFeatures(e.point, {layers: ['markers']});
+			map_2.getCanvas().style.cursor = features.length ? 'pointer' : '';
+			
+		});	
+		
+		
+
+				
     </script>
 	<div id="clear"></div>
 
