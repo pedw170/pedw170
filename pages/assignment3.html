@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<!-- Downloaded compass icon from https://www.iconfinder.com/icons/1055086/compass_direction_location_navigation_icon#size=128 -->
+		<!-- Free for use and no linkback -->
+	<!-- Mapbox JS files -->
+	<script src='https://api.mapbox.com/mapbox-gl-js/v0.39.1/mapbox-gl.js'></script>
+	<link href='https://api.mapbox.com/mapbox-gl-js/v0.39.1/mapbox-gl.css' rel='stylesheet' />
+	
+	<!-- Stylesheets, CSS, URL highlights -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" href="../w3.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="icon" href="../favicon.ico" type="image/x-icon" sizes="16x16">
+	<link rel="shortcut icon" href="../favicon.ico" type="image/x-icon" sizes="16x16"/>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<style>
+		body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
+		
+		#mapcontainer {
+			width: 90%;
+			height: 800px;
+			margin: auto;
+			z-index: -3;
+			}
+		#firstmap {
+			width: 49.5%;
+			float: left;
+			height: 800px;
+			border: 1px solid #008080;
+			z-index: -2;
+			}
+		#secondmap {
+			width: 49.5%;
+			float: right;
+			height: 800px;
+			border: 1px solid #008080;
+			z-index: -2;
+			}
+		
+		#clear {
+			clear: both
+			}
+		
+		.mapboxgl-popup {
+			max-width: 400px;
+			font:12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+			}
+	</style>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Assignment 3: Mapbox Studio</title>
+</head>
+<body class="w3-light-grey w3-content" style="max-width:100%">
+
+<!-- Sidebar/menu -->
+<nav class="w3-sidebar w3-collapse w3-white w3-animate-left" style="z-index:3;width:300px;" id="mySidebar"><br>
+  <div class="w3-container">
+    <center><img class="img-circle" src="../images/globe_os-0.png" style="width:45%;"><br><br>
+    <h4><b>GEOG774</b></h4>
+		<h5><b>Sem 2 | 2017</b></h5>
+			<h6>Patrick Edwards' projects</h6>
+	<hr class="barfade">
+	</center>
+  </div>
+  <div class="w3-bar-block">
+    <a href="https://pedw170.github.io" class="w3-bar-item w3-button w3-text-black w3-padding"><i class="fa fa-th-large fa-fw w3-margin-right"></i>HOME</a> 
+    <a href="assignment2.html" class="w3-bar-item w3-button w3-text-black w3-padding"><i class="glyphicon glyphicon-map-marker fa-fw w3-margin-right"></i>ASSIGNMENT 2</a> 
+    <a href="assignment3.html" class="w3-bar-item w3-button w3-text-teal w3-padding"><i class="glyphicon glyphicon-map-marker fa-fw w3-margin-right"></i>ASSIGNMENT 3</a> 
+	<a href="assignment4.html" class="w3-bar-item w3-button w3-text-black w3-padding"><i class="glyphicon glyphicon-map-marker fa-fw w3-margin-right"></i>ASSIGNMENT 4</a> 
+	<a href="assignment5.html" class="w3-bar-item w3-button w3-text-black w3-padding"><i class="glyphicon glyphicon-map-marker fa-fw w3-margin-right"></i>ASSIGNMENT 5</a> 
+	<a href="project.html" class="w3-bar-item w3-button w3-text-black w3-padding"><i class="glyphicon glyphicon-map-marker fa-fw w3-margin-right"></i>PROJECT</a> 
+  </div>
+	<!-- CSS Sidebar Footer -->
+	<div class="w3-black w3-center w3-padding-12 footer">Powered by (a modified) <a href="https://www.w3schools.com/w3css/default.asp" title="W3.CSS" target="_blank" class="w3-hover-opacity">w3.css</a></div>
+</nav>
+
+<!-- !PAGE CONTENT! -->
+<div class="w3-main" style="margin-left:300px">
+  <!-- Header -->
+  <header id="body_header">
+    <div class="w3-container">
+    <h1><b>Assignment 3</b></h1>
+    <div class="w3-section w3-bottombar w3-padding-8">
+    </div>
+    </div>
+  </header>
+  <!-- Body & Mapbox Map -->
+<div class="w3-row-padding">
+    <div class="w3-container w3-margin-bottom">
+	<div id="mapcontainer">
+	<div id="firstmap">
+	<button id='resetview1'>
+	<i class="fa fa-home fa-2x"></i>
+	</button>
+	<div id='map_1' style='width: 100%; height: 100%;'></div>
+	<script>
+		mapboxgl.accessToken = 'pk.eyJ1IjoicGVkdzE3MCIsImEiOiJjajZkM3Z6ZWsxd20wMnhsN3A0NGYyYWZoIn0.W2KJ8AnKDdLz1k75YsIOrg'	;
+		var map_1 = new mapboxgl.Map({
+		container: 'map_1',
+		style: 'mapbox://styles/pedw170/cj6fubcu62v0h2smrpgocx6fp',
+		center: [172.50, -42.00],
+		zoom: 5.20
+	});
+	
+		document.getElementById('resetview1').addEventListener('click', function () {
+		// Returns map to initial zoom level and location
+		map_1.flyTo({
+		center: [172.50, -42.00],
+		zoom: 5.20
+		});
+	});
+</script>
+Map 1 - Mapbox Style
+	</div>
+	<div id="secondmap">
+	<button id='resetview2'>
+	<i class="fa fa-home fa-2x"></i>
+	</button>
+	<div id='map_2' style='width: 100%; height: 100%;'></div>
+	Map 2 - Manual Settings
+	</div>
+	</div>
+	<script>
+		mapboxgl.accessToken = 'pk.eyJ1IjoicGVkdzE3MCIsImEiOiJjajZkM3Z6ZWsxd20wMnhsN3A0NGYyYWZoIn0.W2KJ8AnKDdLz1k75YsIOrg'	;
+		var map_2 = new mapboxgl.Map({
+		container: 'map_2',
+		style: 'mapbox://styles/pedw170/cj6fudfop1it92sokiiimjmlu',
+		center: [172.50, -42.00],
+		zoom: 5.20
+		});	
+		
+	document.getElementById('resetview2').addEventListener('click', function () {
+    // Returns map to initial zoom level and location
+		map_2.flyTo({
+		center: [172.50, -42.00],
+		zoom: 5.20
+		});
+		map_2.closePopup();
+	});
+		
+		map_2.on('load', function () {
+			map_2.addSource('greatwalks-tracks',{
+				type: 'vector',
+				url: 'mapbox://pedw170.cj6d48nyo1y6y2vnyu2b27tlg-7zjde'
+				});
+
+			map_2.addSource("markers", {
+				"type": "geojson",
+				"data": {"type": "FeatureCollection",
+				  "features": [
+						{
+						  "type": "Feature",
+						  "properties": {
+							"description": "Test.",
+							"marker-symbol": "park",
+							"walkname": "Rakiura Track",
+							"description": "Escape on an island adventure - relax and unwind in the peaceful surroundings with the bush, birds and beach at your side."
+						  },
+						  "geometry": {
+							"type": "Point",
+							"coordinates": [
+							  168.06060791015625,
+							  -46.87016728453677
+							]
+						  }
+						},
+						{
+						  "type": "Feature",
+						  "properties": {
+							"marker-symbol": "park",
+							"walkname": "Kepler Track",
+							"description": "Vast tussock-covered ridgelines and spectacular alpine vistas contrast with peaceful lakeside and valley beech forest in this wilderness adventure."
+						  },
+						  "geometry": {
+							"type": "Point",
+							"coordinates": [
+							  167.53446578979492,
+							  -45.390041974142385
+							]
+						  }
+						},
+						{
+						  "type": "Feature",
+						  "properties": {
+							"marker-symbol": "park",
+							"walkname": "Milford Track",
+							"description": "Experience the finest walk in the world as you retrace the steps of early explorers on the world-renowed Milford Track. Take a journey along valleys carved by glaciers, wander through ancient rainforests and admire cascading waterfalls."
+						  },
+						  "geometry": {
+							"type": "Point",
+							"coordinates": [
+							  167.7660369873047,
+							  -44.80473721472605
+							]
+						  }
+						},
+						{
+						  "type": "Feature",
+						  "properties": {
+							"marker-symbol": "park",
+							"walkname": "Routeburn Track",
+							"description": "This is the ultimate alpine adventure, weaving through meadows, reflective tarns and alpine gardens. You'll be rewarded with spectacular vistas over vast mountain ranges and valleys."
+						  },
+						  "geometry": {
+							"type": "Point",
+							"coordinates": [
+							  168.16635131835938,
+							  -44.75989891587614
+							]
+						  }
+						},
+						{
+						  "type": "Feature",
+						  "properties": {
+							"marker-symbol": "park",
+							"walkname": "Heaphy Track",
+							"description": "Travel through expansive tussock downs, lush forests and nīkau palms to the roaring seas of the West Coast."
+						  },
+						  "geometry": {
+							"type": "Point",
+							"coordinates": [
+							  172.1132,
+							  -40.9747
+							]
+						  }
+						},
+						{
+						  "type": "Feature",
+						  "properties": {
+							"marker-symbol": "park",
+							"walkname": "Abel Tasman Coast Track",
+							"description": "Blessed with a mild climate, golden beaches and lush coastal native bush, the Abel Tasman Coast Track has it all."
+						  },
+						  "geometry": {
+							"type": "Point",
+							"coordinates": [
+							  173.0463409423828,
+							  -40.87094930229996
+							]
+						  }
+						},
+						{
+						  "type": "Feature",
+						  "properties": {
+							"marker-symbol": "park",
+							"walkname": "Tongariro Northern Circuit",
+							"description": "Explore the volcanic heart of Tongariro National Park, a landscape of stark glacial contrasts and alpine views."
+						  },
+						  "geometry": {
+							"type": "Point",
+							"coordinates": [
+							  175.62332153320312,
+							  -39.1407122665526
+							]
+						  }
+						},
+						{
+						  "type": "Feature",
+						  "properties": {
+							"marker-symbol": "park",
+							"walkname": "Lake Waikaremoana",
+							"description": "Trace the shoreline of Lake Waikaremoana, the sea of rippling waters. Pass giant podocarp trees and remote beaches, and enjoy breathtaking views from Panekire Bluff."
+						  },
+						  "geometry": {
+							"type": "Point",
+							"coordinates": [
+							  177.0014190673828,
+							  -38.8151011531236
+							]
+						  }
+						}
+					],
+					}
+				});	
+			map_2.addLayer({
+				"id": "tracks",
+				"type": "line",
+				"source": "greatwalks-tracks",
+				"source-layer": "greatwalksplan",
+				"layout": {
+					"visibility": "visible",
+					"line-join": "round",
+					"line-cap": "round"
+				},
+				"paint": {
+					"line-color": "#00af87",
+					"line-width": 1.5
+				}
+			});
+			map_2.addLayer({
+				"id": "markers",
+				"type": "symbol",
+				"source": "markers",
+				"paint": {
+					"text-color": "#00ff87",
+					"text-halo-color": "rgba(0,0,0,1)",
+					"text-halo-width": 1.5,
+					"text-halo-blur": 1
+				},
+				"layout": {
+					"icon-image": "{marker-symbol}-15",
+					"text-field": "{walkname}",
+					"text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
+					"text-offset": [0, 0.6],
+					"text-size": 12,
+					"text-anchor": "top",
+					"text-allow-overlap": true
+				}
+				});
+		
+
+		
+			map_2.setLayerZoomRange('tracks', 8, 0);
+			map_2.setLayerZoomRange('markers', 0, 22);
+		});
+		map_2.on('click', function (e) {
+		var features = map_2.queryRenderedFeatures(e.point, { layers: ['markers']});
+		if (features.length) {
+		map_2.flyTo({center: features[0].geometry.coordinates, zoom: 10});
+		}
+		});
+		
+		map_2.on('click', 'markers', function (e) {
+			new mapboxgl.Popup()
+				.setLngLat(e.features[0].geometry.coordinates)
+				.setHTML(e.features[0].properties.description)
+				.addTo(map_2);
+			});
+				
+		map_2.on('mousemove', function (e) {
+			var features = map_2.queryRenderedFeatures(e.point, {layers: ['markers']});
+			map_2.getCanvas().style.cursor = features.length ? 'pointer' : '';
+			
+		});	
+		
+		
+
+				
+    </script>
+	<div id="clear"></div>
+
+</div>
+<!-- End page content -->
+</div>
+
+<script>
+// Script to open and close sidebar
+function w3_open() {
+    document.getElementById("mySidebar").style.display = "block";
+    document.getElementById("myOverlay").style.display = "block";
+}
+ 
+function w3_close() {
+    document.getElementById("mySidebar").style.display = "none";
+    document.getElementById("myOverlay").style.display = "none";
+}
+</script>
+
+</body>
+</html>
