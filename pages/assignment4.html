@@ -2,7 +2,13 @@
 <html>
 <head>
 	<title>Assignment 4 - Hexbin Mapping</title>
+	<!--Leaflet JS-->
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.1.0/dist/leaflet.css" />
+	<script src="https://unpkg.com/leaflet@1.1.0/dist/leaflet.js"></script>
+	
 	<!-- Stylesheets, CSS, URL highlights -->
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<link rel="stylesheet" href="../w3.css">
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
@@ -35,8 +41,6 @@
 	opacity: 1.0;
 	}
 	</style>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Assignment 4: Hexbin Mapping</title>
 </head>
 <body class="w3-light-grey w3-content" style="max-width:100%">
@@ -76,8 +80,7 @@
 <!-- Body -->
 <div class="w3-row-padding">
 <div class="w3-container w3-margin-bottom">
-
-			<div id="mapid" class="map map-home leaflet-container leaflet-grab leaflet-touch-drag leaflet-touch-zoom" style="width: 1024px; height: 768px; margin: auto;"></div>
+			<div id="mapid" class="map map-home leaflet-container leaflet-grab leaflet-touch-drag leaflet-touch-zoom" style="width: 1024px; height: 768px; margin: auto;"></div>			
 			<script type="text/javascript" src="akl_fire_hexbins.js"></script>
 			<script>
 			
