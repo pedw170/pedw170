@@ -89,7 +89,7 @@
 				
 				// <!-- Changing map tiles to CartoDB Darkmatter -->
 				var CartoDB_DarkMatter = L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_all/{z}/{x}/{y}.png', {
-					attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> | &copy; <a href="http://cartodb.com/attributions">CartoDB</a> | &copy; <a href="https://onlineservices.fire.org.nz/">New Zealand Fire Service (2016)</a>',
+					attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> | &copy; <a href="http://cartodb.com/attributions">CartoDB</a> | Structural Fire Data &copy; <a href="https://onlineservices.fire.org.nz/">New Zealand Fire Service (2016)</a>',
 					subdomains: 'abcd',
 					maxZoom: 19
 				}).addTo(hexmap);
@@ -198,9 +198,10 @@
 				}).addTo(hexmap);
 			
 			</script>
-
-
  </div>
+ 
+ Assignment 4 utilizes a form of data aggregation known as <b>hexbin mapping</b>, which we use to address a cartographic phenomenon known as the 'overplotting problem', where too many data observations on a map can make it hard to read by virtue of cluttering the canvas with individual points. In this example, a dataset on fires affecting structures in Auckland (acquired from New Zealand Fire Services, 2016) has been converted into a series of hexagons stored in a GeoJSON object and displayed using Leaflet.
+ 
 <!-- End page content -->
 </div>
 
