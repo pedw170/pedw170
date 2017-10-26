@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<!-- Stylesheets, CSS, URL highlights -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://pedw170.github.io/w3.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="icon" href="../favicon.ico" type="image/x-icon" sizes="16x16">
+	<link rel="shortcut icon" href="../favicon.ico" type="image/x-icon" sizes="16x16"/>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.41.0/mapbox-gl.js'></script>
+	<link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.41.0/mapbox-gl.css' rel='stylesheet' />
+	<style>
+		body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
+		
+		#remover {
+		z-index: 3;
+		margin: 1%;
+		background-color: #5b8ab3;
+		color: #fff;
+		font-weight: bold;
+		padding: 0.5em;
+		border: 2px solid #fff;
+		border-radius: 0.5em;
+		box-shadow:0 4px 10px 0 rgba(0,0,0,0.2),0 4px 20px 0 rgba(0,0,0,0.19);
+		cursor: pointer;
+		position: absolute;
+		left: 0.3em;
+		top: 0%;
+		text-align: center;
+		font-family: 'Open Sans', sans-serif;
+		}
+	
+	#switcher {
+		z-index: 3;
+		margin: 1%;
+		background-color: #5b8ab3;
+		color: #fff;
+		font-weight: bold;
+		padding: 0.5em;
+		border: 2px solid #fff;
+		border-radius: 0.5em;
+		box-shadow:0 4px 10px 0 rgba(0,0,0,0.2),0 4px 20px 0 rgba(0,0,0,0.19);
+		cursor: pointer;
+		position: absolute;
+		left: 0.3em;
+		top: 7.5%;
+		text-align: center;
+		font-family: 'Open Sans', sans-serif;
+	}
+	
+	#remover:hover {
+		background-color: #74a5cc;
+	}
+
+	#switcher:hover {
+		background-color: #74a5cc;
+	}	
+	
+	#map {
+			width: 90%;
+			height: 850px;
+			margin: auto;
+			z-index: 0;
+			border: 1px solid #008080;
+		}
+
+	.map-overlay {
+		position: absolute;
+		z-index: 2;
+		bottom: 0;
+		right: 0;
+		background: rgba(255, 255, 255, 0.7);
+		margin-top: 20%;
+		margin-right: 0.5%;
+		font-family: 'Roboto', sans-serif;
+		overflow: auto;
+		border-radius: 3px;
+		font-size: 100%;
+		color: #FFFFFF;
+		background-color: #000000;
+		opacity: 0.7;
+	}
+	
+	#locations {
+		position: absolute;
+	}
+	
+	.legend {
+		background-color: #fff;
+		bottom: 30px;
+		box-shadow: 0 1px 2px rgba(0, 0, 0, 0.10);
+		font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+		padding: 10px;
+		position: absolute;
+		right: 10px;
+		z-index: 1;
+	  }
+	  
+	  .legend h4 {
+		margin: 0 0 10px;
+	  }
+
+	  .legend p {
+		margin-left: 30px;
+		position: absolute;
+		display: block;
+		top: 0;
+	  }
+
+	  .legend div {
+		position:relative;
+	  }
+
+	  .legend div span {
+		border-radius: 50%;
+		display: inline-block;
+		margin-right: 5%;
+		opacity:0.8;
+		background-color:#D49A66;
+	  }
+	
+	#legendtext {
+		line-height: 15px
+		}
+	
+	#legendGradient {
+		width: 100%;
+		height: 15px;
+		border: 1px solid black;
+	}
+	
+	#legendsubtitle {
+		white-space: pre;
+	}
+	
+	#features {
+    top: 0;
+    height: 30%;
+    margin-top: 10px;
+    width: 25%;
+	}
+	</style>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Project - GEOG774</title>
+</head>
+<body class="w3-light-grey w3-content" style="max-width:100%">
+
+<!-- Sidebar/menu -->
+<nav class="w3-sidebar w3-collapse w3-white w3-animate-left" style="z-index:3;width:300px;" id="mySidebar"><br>
+  <div class="w3-container">
+    <center><img class="img-circle" src="../images/globe_os-0.png" style="width:45%;"><br><br>
+    <h4><b>GEOG774</b></h4>
+		<h5><b>Sem 2 | 2017</b></h5>
+			<h6>pedw170's projects</h6>
+	<hr class="barfade">
+	</center>
+  </div>
+  <div class="w3-bar-block">
+    <a href="https://pedw170.github.io" class="w3-bar-item w3-button w3-text-black w3-padding"><i class="fa fa-th-large fa-fw w3-margin-right"></i>HOME</a> 
+    <a href="assignment2.html" class="w3-bar-item w3-button w3-text-black w3-padding"><i class="glyphicon glyphicon-map-marker fa-fw w3-margin-right"></i>ASSIGNMENT 2</a> 
+    <a href="assignment3.html" class="w3-bar-item w3-button w3-text-black w3-padding"><i class="glyphicon glyphicon-map-marker fa-fw w3-margin-right"></i>ASSIGNMENT 3</a> 
+	<a href="assignment4.html" class="w3-bar-item w3-button w3-text-black w3-padding"><i class="glyphicon glyphicon-map-marker fa-fw w3-margin-right"></i>ASSIGNMENT 4</a> 
+	<a href="assignment5.html" class="w3-bar-item w3-button w3-text-black w3-padding"><i class="glyphicon glyphicon-map-marker fa-fw w3-margin-right"></i>ASSIGNMENT 5</a> 
+	<a href="project.html" class="w3-bar-item w3-button w3-text-teal w3-padding"><i class="glyphicon glyphicon-map-marker fa-fw w3-margin-right"></i>PROJECT</a> 
+  </div>
+  <div class="w3-bar-block" style="text-align: center">
+  <hr class="barfade">
+  <b>Data Attribution</b><br>
+  <font size="1">Wildfire Data: <b><u><a href="https://www.fs.usda.gov/rds/archive/">United States Department of Agriculture</a></u></b> © 2015<br>
+  Mapbox Streets Data: <b><u><a href="http://www.openstreetmap.org/about/">OpenStreetMap</a></u></b> © 2017<br>
+  Satellite Imagery: <b><u><a href="https://www.digitalglobe.com/">DigitalGlobe</a></u></b> © 2017<br></font>
+  
+  
+  
+    <!-- CSS Sidebar Footer -->
+  <div class="w3-black w3-center w3-padding-12 footer">Powered by (a modified) <a href="https://www.w3schools.com/w3css/default.asp" title="W3.CSS" target="_blank" class="w3-hover-opacity">w3.css</a></div>
+</nav>
+
+<!-- !PAGE CONTENT! -->
+<div class="w3-main" style="margin-left:300px">
+  <!-- Header -->
+ <header id="body_header">
+    <div class="w3-container">
+    <h1><b>Data aggregation and layer toggles in Mapbox GL JS </b></h1>
+    <div class="w3-section w3-bottombar w3-padding-8">
+    </div>
+    </div>
+  </header>
+  
+  <!-- Example Map Space -->
+<div id='map'>
+	<div id='remover' style='width: 125px'>Show satellite image</div>
+	<div id='switcher' style='width: 125px' class="on">Show clusters</div>
+	<div class='map-overlay' id='features'><h2><center>TEXAS WILDFIRES</center></h2>
+	<b>Features:</b> Toggle the basemap and data aggregation method with the buttons on the left-hand side. Clicking the clustered points will zoom the map in on them, but depending on how close they are, you may have to zoom further to see each individual point. <br><br>Individual points can be clicked on to see the approx. size and cause of the fire.
+	<center><b>***</b></center>	
+	Using publically available data, the spatial pattern of wildfires in Texas for the year 2015 was examined using Mapbox GL JS's ability to aggregate data in cool and different ways. Some new tricks introduced for this project were: point aggregation as heatmaps, as clusters of individual points, and coding some buttons to switch which aggregation is active on the fly as well as toggling between satellite imagery and a simple basemap.<br><br>
+	
+	Fun facts about this dataset: it originally totaled 1.55 million points and covered the entire country from 1992 to 2015, but that makes for a GEOJSON file about 900mb in size which Github would not be happy about hosting, so some trimming of the data in QGIS was done first to pack it down to a nice, trim, 2mb file.
+</div>
+<div id='state-legend' class='legend'>
+    <h4>Legend</h4>
+	<b><center>Wildfire points</center></b>
+	<div id="legendtext"><img style="vertical-align: middle;" src="https://pedw170.github.io/images/fire-station-red.svg"> Individual fires</div><br>
+	<b><center>Wildfire heat map</center></b><center>Point density</center></b>
+	<div id="legendGradient" style="background: -webkit-linear-gradient(left,rgb(145,191,219),rgb(254,224,144),rgb(215,48,39)"></div>
+	<div id="legendsubtitle">Low                        High</div>
+	
+
+</div>
+</div>
+
+
+
+
+<script>
+// Setting a maximum / minimum zoom just in case.
+
+
+// Mapbox GL API key
+mapboxgl.accessToken = 'pk.eyJ1IjoicGVkdzE3MCIsImEiOiJjajZkM3Z6ZWsxd20wMnhsN3A0NGYyYWZoIn0.W2KJ8AnKDdLz1k75YsIOrg';
+// Initializing the map and basic attributes. Starting zoom, location, etc. 
+var map = new mapboxgl.Map({
+    container: 'map',
+    style: 'mapbox://styles/pedw170/cj96qcqplposa2snwb5y6r27c',
+    center: [-98.333, 31.20],
+    zoom: 5.5,
+});
+//Add a geojson point source.  
+//Heatmap layers also work with a vector tile source.
+
+map.on('load', function(){
+
+// Adding the USDA fire data json
+map.addSource('fires2015', {
+        type: "geojson",
+        data: "https://pedw170.github.io/tx_fires_2015.geojson"
+    });
+		// Adding the separate data source being handled by the clustering side of things
+		map.addSource('firesagg', {
+		type: "geojson",
+		data: "https://pedw170.github.io/tx_fires_2015.geojson",
+		cluster: true,
+		clusterMaxZoom: 14,
+		clusterRadius: 40
+		}
+		);
+	
+		// Adding the heatmap layer using the USDA fire data.
+	    map.addLayer({
+        "id": "Heatmap",
+        "type": "heatmap",
+        "source": "fires2015",
+        "maxzoom": 12,
+        "paint": {
+            //Increase the heatmap weight based on frequency and property magnitude
+            "heatmap-weight": {
+                "property": "FIRE_SIZE",
+                "type": "exponential",
+                "stops": [
+                    [0, 0.15],
+					[0.25, 0.20],
+					[10, 0.25],
+					[250, 0.30],
+					[1000, 0.45],
+					[5000, 1],
+                    [314444, 1]
+                ]
+            },
+            //Increase the heatmap color weight weight by zoom level
+            //heatmap-intensity is a multiplier on top of heatmap-weight
+            "heatmap-intensity": {
+                "stops": [
+                    [0, 1],
+                    [9, 3],
+					[22,5]
+                ]
+            },
+            //Color ramp for heatmap.  Domain is 0 (low) to 1 (high).
+            //Begin color ramp at 0-stop with a 0-transparancy color
+            //to create a blur-like effect.
+            "heatmap-color": {
+                "stops": [
+                    [0, "rgba(69,117,180,0)"],
+                    [0.2, "rgb(145,191,219)"],
+                    [0.4, "rgb(224,243,248)"],
+                    [0.6, "rgb(254,224,144)"],
+                    [0.8, "rgb(252,141,89)"],
+                    [1, "rgb(215,48,39)"]
+                ]
+            },
+            //Adjust the heatmap radius by zoom level
+            "heatmap-radius": {
+                "stops": [
+                    [0, 5],
+					[5, 10],
+                    [10, 20]
+                ]
+            },
+        }
+    });	
+	// Adding the clustered points as a layer to the map.
+	map.addLayer({
+        "id": "Clusters",
+        "type": "circle",
+		"source": "firesagg",
+		"filter": ["has", "point_count"],
+        "paint": {
+             "circle-color": {
+                "property": "point_count",
+                "type": "interval",
+                "stops": [
+                    [0, "rgba(81, 187, 214,0.6)"],
+                    [100, "rgba(241, 240, 117,0.6)"],
+                    [750, "rgba(242, 140, 177,0.6)"],
+                ]
+            },
+            // Coloring the clustered points based on the number aggregated together.
+			// Note: change to match heatmap colours maybe?
+			"circle-radius": {
+                property: "point_count",
+                type: "interval",
+                stops: [
+                    [0, 20],
+                    [100, 30],
+                    [750, 40]
+                ]
+            },
+        }
+    });
+	// Adding labels to the clustered points so we know how many are bundled together at any given time.
+    map.addLayer({
+        id: "cluster-count",
+        type: "symbol",
+        "source": "firesagg",
+        filter: ["has", "point_count"],
+        layout: {
+            "text-field": "{point_count_abbreviated}",
+            "text-font": ["DIN Offc Pro Medium", "Arial Unicode MS Bold"],
+            "text-size": 12
+        }
+    });
+	// Adding individual points to be shown once they're free of the clustering. Custom icon in mapbox took forever to come online.
+    map.addLayer({
+        id: "unclustered-point",
+        type: "symbol",
+        "source": "firesagg",
+        filter: ["!has", "point_count"],
+        layout: {
+            "icon-image": "fire-station-red"
+        }
+    });
+
+// Sets the initial opacity states for the map objects, such that the heatmap is visible when the map is first loaded but the clusters, labels, and unclustered points are all turned off.	
+	map.setPaintProperty('Heatmap', 'heatmap-opacity', 1);
+	map.setPaintProperty('Clusters', 'circle-opacity', 0);
+	map.setLayoutProperty('cluster-count', 'visibility', 'none');
+	map.setLayoutProperty('unclustered-point', 'visibility', 'none');
+
+// Simultaneously turns on/off the added layers for heatmaps and clusters, swapping one out for the other, through a div element called 'switcher' being used as a button.
+// Works a heck of a lot better than fooling around with addlayer/removelayer and watching the JS errors pile up in the browser. 
+// When heatmap is turned on, disables clusters, cluster count label, and the unclustered points. When heatmap is turned off, enables all 3. Thus the multiple lines.
+// Let's not talk about how long it took to come to this solution. Should pass this one to Andrew. ＼(￣▽￣)／
+	var changer = document.getElementById('switcher');
+    changer.addEventListener("click", function(){
+        changer = document.getElementById('switcher');
+        if (changer.className === 'on') {
+            changer.setAttribute('class', 'off');
+            map.setPaintProperty('Heatmap', 'heatmap-opacity', 0);
+			map.setPaintProperty('Clusters', 'circle-opacity', 1);
+			map.setLayoutProperty('cluster-count', 'visibility', 'visible');
+			map.setLayoutProperty('unclustered-point', 'visibility', 'visible');
+            changer.innerHTML = 'Show heatmap';
+        } else {
+            changer.setAttribute('class', 'on');
+            map.setPaintProperty('Heatmap', 'heatmap-opacity', 1);
+			map.setPaintProperty('Clusters', 'circle-opacity', 0);
+			map.setLayoutProperty('cluster-count', 'visibility', 'none');
+			map.setLayoutProperty('unclustered-point', 'visibility', 'none');
+            changer.innerHTML = 'Show clusters';
+        }
+    });
+	
+// Toggles the opacity for the element 'mapbox-mapbox-sallite' through a div element called 'remover' being used as a button. 
+// mapbox-mapbox-satellite, for those wondering, is the  default name for the satellite imagery layer added to the mapbox style in the style editor.
+// This allows for the changing between the Google Maps-esque view and the satellite imagery without touching any of the data loaded in through .addlayer.
+// It also runs a lot better. 	(´ ∀ ` *)	
+	var switchy = document.getElementById('remover');
+    switchy.addEventListener("click", function(){
+        switchy = document.getElementById('remover');
+        if (switchy.className === 'on') {
+            switchy.setAttribute('class', 'off');
+            map.setPaintProperty('mapbox-mapbox-satellite', 'raster-opacity', 0);
+            switchy.innerHTML = 'Show satellite image';
+        } else {
+            switchy.setAttribute('class', 'on');
+            map.setPaintProperty('mapbox-mapbox-satellite', 'raster-opacity', 1);
+            switchy.innerHTML = 'Hide satellite image';
+        }
+    });
+});
+
+
+// Displays a popup window when a fire is clicked. Converts acres to approx m2 value (metric system ftw).
+map.on('click', 'unclustered-point', function (e) {
+new mapboxgl.Popup()
+.setLngLat(e.features[0].geometry.coordinates)
+.setHTML('<center><b>Fire Details</b></center>'+'<b>Approx. area burned: </b>'+(e.features[0].properties.FIRE_SIZE) * 4000 +' m²<br>'+'<b>Cause of fire: </b>'+(e.features[0].properties.STAT_CAU_1)) 
+.addTo(map);
+});
+
+// Causes clusters to, when clicked, zoom in.
+map.on('click', 'Clusters', function (e) {
+var features = map.queryRenderedFeatures(e.point, { layers: ['Clusters'] });
+if (features.length) {
+map.flyTo({center: features[0].geometry.coordinates, zoom: 10});
+}
+});
+
+// Changes mouse cursor to a pointer finger whenever a cluster or unclustered point is moused over.
+map.on('mousemove', function (e) {
+    var features = map.queryRenderedFeatures(e.point, { layers: ['unclustered-point', 'Clusters'] });
+    map.getCanvas().style.cursor = (features.length) ? 'pointer' : '';
+});
+
+</script>
+</div>
+<!-- End main div -->
+    
+
+<script>
+// Script to open and close sidebar
+function w3_open() {
+    document.getElementById("mySidebar").style.display = "block";
+    document.getElementById("myOverlay").style.display = "block";
+}
+ 
+function w3_close() {
+    document.getElementById("mySidebar").style.display = "none";
+    document.getElementById("myOverlay").style.display = "none";
+}
+
+</script>
+
+</body>
+</html>
