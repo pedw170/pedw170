@@ -64,6 +64,7 @@
 			height: 850px;
 			margin: auto;
 			z-index: 0;
+			border: 1px solid #008080;
 		}
 
 	.map-overlay {
@@ -77,7 +78,7 @@
 		font-family: 'Roboto', sans-serif;
 		overflow: auto;
 		border-radius: 3px;
-		font-size: 75%;
+		font-size: 100%;
 		color: #FFFFFF;
 		background-color: #000000;
 		opacity: 0.7;
@@ -89,19 +90,6 @@
 	
 	.legend {
 		background-color: #fff;
-		border-radius: 3px;
-		bottom: 30px;
-		box-shadow: 0 1px 2px rgba(0, 0, 0, 0.10);
-		font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
-		padding: 10px;
-		position: absolute;
-		right: 10px;
-		z-index: 1;
-	  }
-	  
-	  	.legend2 {
-		background-color: #fff;
-		border-radius: 3px;
 		bottom: 30px;
 		box-shadow: 0 1px 2px rgba(0, 0, 0, 0.10);
 		font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
@@ -129,10 +117,24 @@
 	  .legend div span {
 		border-radius: 50%;
 		display: inline-block;
-		margin-right: 5px;
+		margin-right: 5%;
 		opacity:0.8;
 		background-color:#D49A66;
 	  }
+	
+	#legendtext {
+		line-height: 15px
+		}
+	
+	#legendGradient {
+		width: 100%;
+		height: 15px;
+		border: 1px solid black;
+	}
+	
+	#legendsubtitle {
+		white-space: pre;
+	}
 	
 	#features {
     top: 0;
@@ -174,7 +176,7 @@
   <!-- Header -->
  <header id="body_header">
     <div class="w3-container">
-    <h1><b>Class Project</b></h1>
+    <h1><b>Data aggregation and layer toggles in Mapbox GL JS </b></h1>
     <div class="w3-section w3-bottombar w3-padding-8">
     </div>
     </div>
@@ -184,10 +186,25 @@
 <div id='map'>
 	<div id='remover' style='width: 125px'>Show satellite image</div>
 	<div id='switcher' style='width: 125px'>Show clusters</div>
-	<div class='map-overlay' id='features'><h2>2015 TEXAS WILDFIRES</h2>
-    <div id='pd'>Wildfire Data: <a href="https://www.fs.usda.gov/rds/archive/">United States Department of Agriculture</a> © 2015
+	<div class='map-overlay' id='features'><h2><center>TEXAS WILDFIRES</center></h2>
+	<b>Note:</b> you may have to click the 'show clusters' button twice to get it to fire for the first time. It doesn't happen on everyone's computer. Strange!<br><br> 
+	Wildfire Data: <b><u><a href="https://www.fs.usda.gov/rds/archive/">United States Department of Agriculture</a></u></b> © 2015<center><b>***</b></center>	
+	Using publically available data, the spatial pattern of wildfires in Texas for the year 2015 was examined using Mapbox GL JS's ability to aggregate data in cool and different ways. Some new tricks introduced for this project were: point aggregation as heatmaps, as clusters of individual points, and coding some buttons to switch which aggregation is active on the fly as well as toggling between satellite imagery and a simple basemap.<br><br>
+	
+	Fun facts about this dataset: it originally totaled 1.55 million points and covered the entire country from 1992 to 2015, but that makes for a GEOJSON file about 900mb in size which Github would not be happy about hosting, so some trimming of the data in QGIS was done first to pack it down to a nice, trim, 2mb file.
+</div>
+<div id='state-legend' class='legend'>
+    <h4>Legend</h4>
+	<b><center>Wildfire points</center></b>
+	<div id="legendtext"><img style="vertical-align: middle;" src="http://pedw170.github.io/images/fire-station-red.svg"> Individual fires</div><br>
+	<b><center>Wildfire heat map</center></b><center>Point density</center></b>
+	<div id="legendGradient" style="background: -webkit-linear-gradient(left,rgb(15,255,255),rgb(18,255,26),rgb(255,255,22),rgb(255,116,24),rgb(255,29,25)"></div>
+	<div id="legendsubtitle">Low                        High</div>
+	
+
 </div>
 </div>
+
 
 
 
@@ -417,7 +434,6 @@ function w3_close() {
     document.getElementById("mySidebar").style.display = "none";
     document.getElementById("myOverlay").style.display = "none";
 }
-// Script to open and close info pane
 
 </script>
 
